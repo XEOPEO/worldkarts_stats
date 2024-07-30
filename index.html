@@ -15,7 +15,7 @@
             # Laps Driven
           </div>
           <div class="card-body">
-            <p class="card-text">Some text</p>
+            <p class="card-text" id="total_lap_count">Some text</p>
           </div>
         </div>
       </div>
@@ -45,27 +45,17 @@
         <table class="table table-hover">
           <thead>
             <tr>
-              <th scope="col">Date</th>
-              <th scope="col">Week</th>
               <th scope="col">Round</th>
               <th scope="col">S1</th>
               <th scope="col">S2</th>
               <th scope="col">S3</th>
               <th scope="col">Lap time</th>
               <th scope="col">Kart Number</th>
+              <th scope="col">Date</th>
+              <th scope="col">Week</th>
             </tr>
           </thead>
-          <tbody>
-            <tr>
-              <td>{{date}}</td>
-              <td>{{week}}</td>
-              <td>{{round}}</td>
-              <td>{{s1}}</td>
-              <td>{{s2}}</td>
-              <td>{{s3}}</td>
-              <td>{{time}}</td>
-              <td>{{kart_nr}}</td>
-            </tr>
+          <tbody id="table-body">
           </tbody>
         </table>
       </div>
