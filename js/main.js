@@ -1,31 +1,12 @@
-// Load in CSV file
-var data = Papa.parse("./data/worldkarts_results.csv",{
-	delimiter: ",",	// auto-detect
-	newline: "",	// auto-detect
-	quoteChar: '"',
-	escapeChar: '"',
+// Get data from CSV
+var data;
+var csv = Papa.parse("http://127.0.0.1:5500/worldkarts_stats/data/worldkarts_results.csv", {
 	header: true,
-	transformHeader: undefined,
-	dynamicTyping: false,
-	preview: 0,
-	encoding: "",
-	worker: false,
-	comments: false,
-	step: undefined,
-	complete: undefined,
-	error: undefined,
 	download: true,
-	downloadRequestHeaders: undefined,
-	downloadRequestBody: undefined,
-	skipEmptyLines: false,
-	chunk: undefined,
-	chunkSize: undefined,
-	fastMode: undefined,
-	beforeFirstChunk: undefined,
-	withCredentials: undefined,
-	transform: undefined,
-	delimitersToGuess: [',', '\t', '|', ';', Papa.RECORD_SEP, Papa.UNIT_SEP],
-	skipFirstNLines: 0
+	delimeter: ",",
+	complete: function(results) {
+		data = results.data;
+	}
 });
 
-console.log(data);
+setTimeout(() => {  console.log(data); }, 20);
