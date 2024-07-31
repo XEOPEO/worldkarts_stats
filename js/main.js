@@ -108,6 +108,9 @@ function app(data) {
 	});
 
 	let table = new DataTable('#timing-table', {
-		order: []
+		order: [],
+		paging: false,
+		scollCollapse: true,
+		scrollY: '50vh'
 	});
 };
