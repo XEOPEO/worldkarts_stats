@@ -106,4 +106,8 @@ function app(data) {
 		// Draw table
 		drawTableRow(item);
 	});
+
+	let table = new DataTable('#table-timings', {
+		paging: false
+	});
 };
