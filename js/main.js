@@ -1,3 +1,14 @@
+// Get data from CSV
+var data;
+var csv = Papa.parse("https://kartstats.lugia.eu/data/worldkarts_results.csv", {
+	header: true,
+	download: true,
+	delimeter: ",",
+	complete: function(results) {
+		data = results.data;
+	}
+});
+
 // Global vars
 var optimal_time, best_time = 0;
 var best_s1, best_s2, best_s3 = 0;
@@ -81,17 +92,6 @@ function getBestS2() {
 function getBestS3() {
 
 };
-
-// Get data from CSV
-var data;
-var csv = Papa.parse("https://kartstats.lugia.eu/data/worldkarts_results.csv", {
-	header: true,
-	download: true,
-	delimeter: ",",
-	complete: function(results) {
-		data = results.data;
-	}
-});
 
 setTimeout(() => {  app(data); }, 100);
 
