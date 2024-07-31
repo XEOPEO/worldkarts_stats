@@ -93,8 +93,6 @@ function getBestS3() {
 
 };
 
-setTimeout(() => {  app(data); }, 100);
-
 // Main app function
 function app(data) {
 	// Get dataset length/entrycount which is amount of laps registered
@@ -111,6 +109,12 @@ function app(data) {
 		order: [],
 		paging: false,
 		scollCollapse: true,
-		scrollY: '50vh'
+		scrollY: '75vh'
 	});
 };
+
+while (typeof data == undefined) {
+	if (typeof data != undefined) break;
+}
+
+app(data);
