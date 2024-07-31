@@ -107,7 +107,7 @@ function app(data) {
 		drawTableRow(item);
 	});
 
-	let table = new DataTable('#table-timings', {
+	let table = new DataTable('#timing-table', {
 		ordering: true
 	});
 };
