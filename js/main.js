@@ -14,6 +14,27 @@ var optimal_time, best_time = 0;
 var best_s1, best_s2, best_s3 = 0;
 var lap_average, lap_deviation = 0;
 
+// Main app function
+function app(data) {
+	// Get dataset length/entrycount which is amount of laps registered
+	var total_lap_count = data.length;
+	drawTotalLapCount(total_lap_count);
+
+	// Loop through dataset
+	data.forEach((item) => {
+		// Draw table
+		drawTableRow(item);
+	});
+
+	let table = new DataTable('#timing-table', {
+		order: [],
+		paging: false,
+		searching: false,
+		scollCollapse: true,
+		scrollY: '75vh'
+	});
+};
+
 // Function helpers
 function drawTotalLapCount(total_lap_count) {
 	document.getElementById("total_lap_count").innerHTML = total_lap_count;
@@ -93,30 +114,5 @@ function getBestS3() {
 
 };
 
-// Main app function
-function app(data) {
-	// Get dataset length/entrycount which is amount of laps registered
-	var total_lap_count = data.length;
-	drawTotalLapCount(total_lap_count);
-
-	// Loop through dataset
-	data.forEach((item) => {
-		// Draw table
-		drawTableRow(item);
-	});
-
-	let table = new DataTable('#timing-table', {
-		order: [],
-		paging: false,
-		searching: false,
-		scollCollapse: true,
-		scrollY: '75vh'
-	});
-};
-
-while (typeof data === undefined) {
-	if (typeof data !== undefined) {
-		app(data);
-		break;
-	};
-};
+// Start application
+setTimeout(() => {  app(data); }, 100);
