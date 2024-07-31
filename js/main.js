@@ -92,7 +92,9 @@ function getLapDeviation() {
 };
 
 function getLapAverage(lap_average, item) {
+	console.log("Step 0a: " + item.time_sec);
 	lap_average += item.time_sec;
+	console.log("Step 0b: " + lap_average);
 };
 
 function drawLapAverage(lap_average) {
