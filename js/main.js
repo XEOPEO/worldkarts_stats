@@ -108,13 +108,15 @@ function app(data) {
 	let table = new DataTable('#timing-table', {
 		order: [],
 		paging: false,
+		searching: false,
 		scollCollapse: true,
 		scrollY: '75vh'
 	});
 };
 
-while (typeof data == undefined) {
-	if (typeof data != undefined) break;
-}
-
-app(data);
+while (typeof data === undefined) {
+	if (typeof data !== undefined) {
+		app(data);
+		break;
+	};
+};
