@@ -93,7 +93,7 @@ var csv = Papa.parse("https://kartstats.lugia.eu/data/worldkarts_results.csv", {
 	}
 });
 
-setTimeout(() => {  app(data); }, 40);
+setTimeout(() => {  app(data); }, 100);
 
 // Main app function
 function app(data) {
