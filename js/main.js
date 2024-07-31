@@ -1,10 +1,10 @@
-// Global vars
-var optimal_time, best_time = 0;
-var best_s1, best_s2, best_s3 = 0;
-var lap_average, lap_deviation = 0;
-
 // Main app function
 function app(data) {
+	// Global vars
+	var optimal_time, best_time = 0;
+	var best_s1, best_s2, best_s3 = 0;
+	var lap_average, lap_deviation = 0;
+
 	// Get dataset length/entrycount which is amount of laps registered
 	var total_lap_count = data.length;
 	drawTotalLapCount(total_lap_count);
@@ -13,7 +13,13 @@ function app(data) {
 	data.forEach((item) => {
 		// Draw table
 		drawTableRow(item);
+
+		// Calculate + draw average lap time
+		getLapAverage(lap_average, total_lap_count, item);
 	});
+
+	lap_average = lap_average/total_lap_count;
+	drawLapAverage(lap_average);
 
 	let table = new DataTable('#timing-table', {
 		order: [],
@@ -83,13 +89,21 @@ function getLapDeviation() {
 
 };
 
-function getLapAverage() {
+function getLapAverage(lap_average, item) {
+	lap_average += item.time_sec;
+};
 
+function drawLapAverage(lap_average) {
+	var lap_average_ms = lap_average * 1000
+	var milliseconds = lap_average_ms % 1000;
+	var seconds = Math.floor((lap_average_ms / 1000) % 60);
+	var minutes = Math.floor((lap_average_ms / (60 * 1000)) % 60);
+	document.getElementById("lap_average").innerHTML = minutes + ":" + seconds + "." + milliseconds;
 };
 
 function getOptimalTime() {
 
-}
+};
 
 function getBestS1() {
 
