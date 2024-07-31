@@ -108,6 +108,6 @@ function app(data) {
 	});
 
 	let table = new DataTable('#timing-table', {
-		ordering: true
+		order: []
 	});
 };
