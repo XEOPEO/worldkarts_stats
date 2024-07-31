@@ -108,8 +108,6 @@ function app(data) {
 	});
 
 	let table = new DataTable('#table-timings', {
-		paging: false,
-		ordering: true,
-		select: true
+		ordering: true
 	});
 };
