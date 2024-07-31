@@ -96,7 +96,7 @@ function getLapAverage(lap_average, item) {
 };
 
 function drawLapAverage(lap_average) {
-	var lap_average_ms = lap_average * 1000
+	var lap_average_ms = lap_average * 1000;
 	console.log("Step 2: " + lap_average_ms);
 	var milliseconds = lap_average_ms % 1000;
 	var seconds = Math.floor((lap_average_ms / 1000) % 60);
