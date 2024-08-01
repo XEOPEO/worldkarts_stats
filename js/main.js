@@ -13,14 +13,17 @@ function app(data) {
 	data.forEach((item) => {
 		// Draw table
 		drawTableRow(item);
-
-		// Calculate + draw average lap time
-		lap_average = getLapAverage(lap_average, item);
 	});
 
-	lap_average = lap_average/total_lap_count;
+	// Lap average
+	lap_average = getLapAverage(data);
 	drawLapAverage(lap_average);
 
+	// Lap standard deviation
+	lap_deviation = getLapDeviation(data, lap_average);
+	drawLapDeviation(lap_deviation);
+
+	// Initiate DataTables
 	let table = new DataTable('#timing-table', {
 		order: [],
 		paging: false,
@@ -85,13 +88,21 @@ function drawTableRow(item) {
 	tbody.appendChild(tr);
 };
 
-function getLapDeviation() {
-
+function getLapDeviation(data, lap_average) {
+	let laptimes = data.map(entry => parseFloat(entry.time_sec));
+	let variance = laptimes.reduce((sum, time) => sum + Math.pow(time - lap_average, 2), 0) / laptimes.length;
+	let stdDev = Math.sqrt(variance);
+	return stdDev.toFixed(3);
 };
 
-function getLapAverage(lap_average, item) {
-	lap_average = lap_average + parseFloat(item.time_sec);
-	return lap_average;
+function drawLapDeviation(lap_deviation) {
+	document.getElementById("lap_deviation").innerHTML = lap_deviation;
+}
+
+function getLapAverage(data) {
+	let laptimes = data.map(entry => parseFloat(entry.time_sec));
+	let lap_average = laptimes.reduce((sum, time) => sum + time, 0) / data.length;
+	return lap_average.toFixed(3);
 };
 
 function drawLapAverage(lap_average) {

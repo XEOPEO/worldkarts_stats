@@ -11,7 +11,7 @@
     // Get data from CSV
     var data;
     var csv = Papa.parse("https://kartstats.lugia.eu/data/worldkarts_results.csv", {
-    //DEV:var csv = Papa.parse("http://127.0.0.1:5500/worldkarts_stats/data/worldkarts_results.csv", {
+    //DEV:var csv = Papa.parse("http://127.0.0.1:5500/data/worldkarts_results.csv", {
       header: true,
       download: true,
       delimeter: ",",
@@ -47,10 +47,10 @@
       <div class="col-4">
         <div class="card text-bg-primary mb-3">
           <div class="card-header">
-            Average Lap deviation
+            Average Lap deviation (seconds)
           </div>
           <div class="card-body">
-            <p class="card-text">00.000</p>
+            <p class="card-text" id="lap_deviation">00.000</p>
           </div>
         </div>
       </div>
