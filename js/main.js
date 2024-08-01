@@ -113,20 +113,28 @@ function drawLapAverage(lap_average) {
 	document.getElementById("lap_average").innerHTML = minutes + ":" + seconds + "." + parseInt(milliseconds);
 };
 
-function getOptimalTime() {
-
+function getOptimalTime(data) {
+	let laptimes = data.map(entry => parseFloat(entry.laptime_sec));
+	let best_time = Math.min(...laptimes);
+	return best_time;
 };
 
-function getBestS1() {
-
+function getBestS1(data) {
+	let laptimes = data.map(entry => parseFloat(entry.s1));
+	let best_s1 = Math.min(...laptimes);
+	return best_s1;
 };
 
-function getBestS2() {
-
+function getBestS2(data) {
+	let laptimes = data.map(entry => parseFloat(entry.s2));
+	let best_s2 = Math.min(...laptimes);
+	return best_s2;
 };
 
-function getBestS3() {
-
+function getBestS3(data) {
+	let laptimes = data.map(entry => parseFloat(entry.s3));
+	let best_s3 = Math.min(...laptimes);
+	return best_s3;
 };
 
 // Start application
