@@ -14,7 +14,7 @@ You don't select the laptimes, those will be recalculated by adding up the secto
 Paste those values in file named dataset.txt in the same folder as the script.
 Then you simply have to run the script
 ``` python3 worldkarts_formatter.py ```
-Which will output a CSV file which is TAB delimitted, for easy select all and paste in Micorosft Excel or Google Sheets
+Which will output a CSV file in the same folder which is TAB delimitted, for easy select all and paste in Micorosft Excel or Google Sheets
 
 ## The format of the CSV
 The CSV must follow the following header count and order:
