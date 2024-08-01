@@ -113,7 +113,7 @@ function drawLapAverage(lap_average) {
 	document.getElementById("lap_average").innerHTML = minutes + ":" + seconds + "." + parseInt(milliseconds);
 };
 
-function getOptimalTime(data) {
+function getBestTime(data) {
 	let laptimes = data.map(entry => parseFloat(entry.laptime_sec));
 	let best_time = Math.min(...laptimes);
 	return best_time;
@@ -135,6 +135,10 @@ function getBestS3(data) {
 	let laptimes = data.map(entry => parseFloat(entry.s3));
 	let best_s3 = Math.min(...laptimes);
 	return best_s3;
+};
+
+function getOptimalTime(s1,s2,s3) {
+
 };
 
 // Start application
