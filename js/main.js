@@ -90,9 +90,9 @@ function drawTableRow(item) {
 
 function getLapDeviation(data, lap_average) {
 	let laptimes = data.map(entry => parseFloat(entry.time_sec));
-	let variance = laptimes.reduce((sum, time) => sum + Math.pow(time - lap_average, 2), 0) / laptimes.length;
-	let stdDev = Math.sqrt(variance);
-	return stdDev.toFixed(3);
+	let absolute_deviation = laptimes.reduce((sum, time) => sum + Math.abs(time - lap_average), 0);
+	let average_deviation = absolute_deviation / laptimes.length;
+	return average_deviation.toFixed(3);
 };
 
 function drawLapDeviation(lap_deviation) {
