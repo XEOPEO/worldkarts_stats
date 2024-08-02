@@ -9,10 +9,24 @@ function app(data) {
 	var total_lap_count = data.length;
 	drawTotalLapCount(total_lap_count);
 
+	// Best sector times
+	best_s1 = getBestS1(data);
+	best_s2 = getBestS2(data);
+	best_s3 = getBestS3(data);
+
+	// Best lap time
+	best_time = getBestTime(data);
+	drawBestTime(best_time);
+
+	// Optimal lap time
+	optimal_time = (parseFloat(best_s1) + parseFloat(best_s2) + parseFloat(best_s3)).toFixed(3);
+	var optimal_diff = (parseFloat(best_time) - parseFloat(optimal_time)).toFixed(3);
+	drawOptimalTime(optimal_time, optimal_diff);
+
 	// Loop through dataset
 	data.forEach((item) => {
 		// Draw table
-		drawTableRow(item);
+		drawTableRow(item, best_s1, best_s2, best_s3, best_time);
 	});
 
 	// Lap average
@@ -29,7 +43,8 @@ function app(data) {
 		paging: false,
 		searching: false,
 		scollCollapse: true,
-		scrollY: '75vh'
+		scrollY: '75vh',
+		bInfo: false
 	});
 };
 
@@ -38,7 +53,7 @@ function drawTotalLapCount(total_lap_count) {
 	document.getElementById("total_lap_count").innerHTML = total_lap_count;
 };
 
-function drawTableRow(item) {
+function drawTableRow(item, best_s1, best_s2, best_s3, best_time) {
 	var tbody = document.getElementById("table-body");
 	var tr = document.createElement("tr");
 
@@ -48,18 +63,30 @@ function drawTableRow(item) {
 
 	// S1
 	var td_s1 = document.createElement("td");
+	if (parseFloat(item.s1) == best_s1) {
+		td_s1.className="purple";
+	}
 	td_s1.innerHTML = item.s1;
 
 	// S2
 	var td_s2 = document.createElement("td");
+	if (parseFloat(item.s2) == best_s2) {
+		td_s2.className="purple";
+	}
 	td_s2.innerHTML = item.s2;
 
 	// S3
 	var td_s3 = document.createElement("td");
+	if (parseFloat(item.s3) == best_s3) {
+		td_s3.className="purple";
+	}
 	td_s3.innerHTML = item.s3;
 
 	// Lap time
 	var td_time = document.createElement("td");
+	if (parseFloat(item.time_sec) == best_time) {
+		td_time.className="purple";
+	}
 	td_time.innerHTML = item.time;
 
 	// Kart Number
@@ -106,17 +133,21 @@ function getLapAverage(data) {
 };
 
 function drawLapAverage(lap_average) {
-	var lap_average_ms = lap_average * 1000;
-	var milliseconds = lap_average_ms % 1000;
-	var seconds = Math.floor((lap_average_ms / 1000) % 60);
-	var minutes = Math.floor((lap_average_ms / (60 * 1000)) % 60);
-	document.getElementById("lap_average").innerHTML = minutes + ":" + seconds + "." + parseInt(milliseconds);
+	let minutes = Math.floor(lap_average / 60).toString().padStart(2, '0');
+	let seconds = (lap_average % 60).toFixed(3).padStart(6, '0');
+	document.getElementById("lap_average").innerHTML = `${minutes}:${seconds}`;
 };
 
 function getBestTime(data) {
-	let laptimes = data.map(entry => parseFloat(entry.laptime_sec));
+	let laptimes = data.map(entry => parseFloat(entry.time_sec));
 	let best_time = Math.min(...laptimes);
 	return best_time;
+};
+
+function drawBestTime(best_time) {
+	let minutes = Math.floor(best_time / 60).toString().padStart(2, '0');
+	let seconds = (best_time % 60).toFixed(3).padStart(6, '0');
+	document.getElementById("best_lap").innerHTML = `${minutes}:${seconds}`;
 };
 
 function getBestS1(data) {
@@ -137,8 +168,10 @@ function getBestS3(data) {
 	return best_s3;
 };
 
-function getOptimalTime(s1,s2,s3) {
-
+function drawOptimalTime(optimal_time, optimal_diff) {
+	let minutes = Math.floor(optimal_time / 60).toString().padStart(2, '0');
+	let seconds = (optimal_time % 60).toFixed(3).padStart(6, '0');
+	document.getElementById("optimal_lap").innerHTML = `${minutes}:${seconds}` + " <span class=\"badge bg-success\">-"+ optimal_diff +"</span>";
 };
 
 // Start application

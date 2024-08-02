@@ -1,0 +1,4 @@
+table.dataTable tbody tr td.purple {
+  color: rgb(148, 45, 245);
+  font-weight: bold;
+}
