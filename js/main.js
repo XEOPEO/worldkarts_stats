@@ -43,7 +43,7 @@ function app(data) {
 		paging: false,
 		searching: false,
 		scollCollapse: true,
-		scrollY: '75vh',
+		scrollY: '80vh',
 		bInfo: false
 	});
 };
