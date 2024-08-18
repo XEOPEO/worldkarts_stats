@@ -39,7 +39,7 @@ function app(data) {
 
 	// Initiate DataTables
 	let table = new DataTable('#timing-table', {
-		order: [],
+		order: [[4, "asc"]],
 		paging: false,
 		searching: false,
 		scollCollapse: true,
