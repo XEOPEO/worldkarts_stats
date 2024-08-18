@@ -93,6 +93,10 @@ function drawTableRow(item, best_s1, best_s2, best_s3, best_time) {
 	var td_kart_nr = document.createElement("td");
 	td_kart_nr.innerHTML = item.kart_nr;
 
+	// Kart Model
+	var td_kart_model = document.createElement("td");
+	td_kart_model.innerHTML = item.kart_model;
+
 	// Date
 	var td_date = document.createElement("td");
 	td_date.innerHTML = item.date;
@@ -108,6 +112,7 @@ function drawTableRow(item, best_s1, best_s2, best_s3, best_time) {
 	tr.appendChild(td_s3);
 	tr.appendChild(td_time);
 	tr.appendChild(td_kart_nr);
+	tr.appendChild(td_kart_model);
 	tr.appendChild(td_date);
 	tr.appendChild(td_week);
 
