@@ -4,6 +4,7 @@ function app(data) {
 	var optimal_time = 0, best_time = 0;
 	var best_s1 = 0, best_s2 = 0, best_s3 = 0;
 	var lap_average = 0, lap_deviation = 0;
+	var best_kart_model = "", best_kart_nr = 0;
 
 	// Get dataset length/entrycount which is amount of laps registered
 	var total_lap_count = data.length;
@@ -16,7 +17,9 @@ function app(data) {
 
 	// Best lap time
 	best_time = getBestTime(data);
-	drawBestTime(best_time);
+	best_kart_nr = getBestKartNr(data, best_time);
+	best_kart_model = getBestKartModel(data, best_time)
+	drawBestTime(best_time, best_kart_nr, best_kart_model);
 
 	// Optimal lap time
 	optimal_time = (parseFloat(best_s1) + parseFloat(best_s2) + parseFloat(best_s3)).toFixed(3);
@@ -149,10 +152,10 @@ function getBestTime(data) {
 	return best_time;
 };
 
-function drawBestTime(best_time) {
+function drawBestTime(best_time, best_kart_nr, best_kart_model) {
 	let minutes = Math.floor(best_time / 60).toString().padStart(2, '0');
 	let seconds = (best_time % 60).toFixed(3).padStart(6, '0');
-	document.getElementById("best_lap").innerHTML = `${minutes}:${seconds}`;
+	document.getElementById("best_lap").innerHTML = `${minutes}:${seconds}` + " (Kart: " + best_kart_model + " " + best_kart_nr + ")";
 };
 
 function getBestS1(data) {
@@ -171,6 +174,16 @@ function getBestS3(data) {
 	let laptimes = data.map(entry => parseFloat(entry.s3));
 	let best_s3 = Math.min(...laptimes);
 	return best_s3;
+};
+
+function getBestKartModel(data, best_time) {
+	let lap = data.find(entry => parseFloat(entry.time_sec) === best_time);
+	return lap.kart_model;
+};
+
+function getBestKartNr(data, best_time) {
+	let lap = data.find(entry => parseFloat(entry.time_sec) === best_time);
+	return lap.kart_nr;
 };
 
 function drawOptimalTime(optimal_time, optimal_diff) {
